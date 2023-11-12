@@ -2,63 +2,14 @@
   description = "Nix Community Templates";
 
   outputs = { self }: {
-    templates = rec {
+    templates = {
       empty = {
         path = ./empty;
         description = "Empty Template";
-        welcomeText = ''
-          # Empty Template
-          Just a simple flake to make setting up a development project with nix a little easier.
-
-          ## More info
-          - [flake-utils Github Page](https://github.com/numtide/flake-utils)
-        '';
       };
       rust = {
         path = ./rust;
         description = "Rust Template";
-        welcomeText = ''
-          # Rust Template
-          A basic rust application template with a package build.
-
-          Comes bundled with cargo and rust-analyzer.
-
-          ## More info
-          - [rust-overlay Github Page](https://github.com/oxalica/rust-overlay)
-          - [flake-utils Github Page](https://github.com/numtide/flake-utils)
-        '';
-
-      };
-      zig = { path = ./zig; description = "Zig Template"; };
-      go = { path = ./go; description = "Go Template"; };
-      python = { path = ./python; description = "Python Template"; };
-      haskell = { path = ./haskell; description = "Haskell Template"; };
-      flutter = { path = ./flutter; description = "Flutter Template"; };
-      nextjs = {
-        path = ./nextjs;
-        description = "NextJS Template";
-        welcomeText = ''
-          # NextJS Template
-          A basic NextJS application template with a package build.
-
-          Comes bundled with nodejs and pnpm.
-
-          ## More info
-          - [flake-utils Github Page](https://github.com/numtide/flake-utils)
-        '';
-      };
-      c = {
-        path = ./c;
-        description = "C Template";
-        welcomeText = ''
-          # C Template
-          A basic C application template with a package build.
-
-          Comes bundled with gcc.
-
-          ## More info
-          - [flake-utils Github Page](https://github.com/numtide/flake-utils)
-        '';
       };
     };
   };

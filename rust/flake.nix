@@ -1,41 +1,22 @@
 {
-  description = "Rust Template";
+  description = "Description for the project";
 
   inputs = {
-    nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
-    flake-utils.url = github:numtide/flake-utils;
-
-    rust-overlay.url = github:oxalica/rust-overlay;
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    systems.url = "github:nix-systems/default";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+    rust.url = "github:oxalica/rust-overlay";
   };
 
-  outputs = { self, nixpkgs, rust-overlay, flake-utils, ... }:
-    flake-utils.lib.eachDefaultSystem (system:
-      let
-        overlays = [ (import rust-overlay) ];
-        pkgs = import nixpkgs {
-          inherit system overlays;
-        };
-      in
-      {
-        devShells.default = pkgs.mkShell {
-          nativeBuildInputs = with pkgs; [
-            rust-bin.stable.latest.default
-            rust-analyzer
-          ];
-
-          buildInputs = with pkgs; [ ];
-        };
-
-        packages.default = pkgs.rustPlatform.buildRustPackage rec {
-          name = "projectname"; # Same that is in Cargo.toml
-
-          src = ./.;
-
-          cargoLock = {
-            lockFile = ./Cargo.lock;
-          };
-        };
-      }
-    );
+  outputs = inputs@{ flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      debug = true;
+      systems = import inputs.systems;
+      imports = [
+        inputs.treefmt-nix.flakeModule
+        ./nix/devshell.nix
+        ./nix/formatter.nix
+        ./nix/overlays.nix
+      ];
+    };
 }
-

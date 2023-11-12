@@ -1,11 +1,10 @@
-# Nix Community Templates
+# Nix Templkates
 
-A collection of basic templates.
-Using [flake-utils](https://github.com/numtide/flake-utils).
+A collection of my templates.
 
 ## Usage
 Replace `<template>` with the name of the language template you would like to use.
 ```sh
 mkdir project && cd project
-nix flake init -t github:nix-community/templates#<template>
+nix flake init -t github:Padraic-O-Mhuiris/templates#<template>
 ```
