@@ -1,5 +1,5 @@
 {
-  description = "Nix Community Templates";
+  description = "Nix Templates";
 
   outputs = { self }: {
     templates = {

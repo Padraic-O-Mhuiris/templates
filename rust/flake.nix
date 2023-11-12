@@ -1,5 +1,5 @@
 {
-  description = "Description for the project";
+  description = "<PROJECT_DESCRIPTION>";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -17,6 +17,7 @@
         ./nix/devshell.nix
         ./nix/formatter.nix
         ./nix/overlays.nix
+        ./nix/packages.nix
       ];
     };
 }
